@@ -1,0 +1,16 @@
+name: Roll WebRTC revision
+
+# For testing only.
+on: [push, pull_request]
+
+jobs:
+  roll:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: jianjunz/owt-client-native
+        ref: refs/heads/auto-roller-test
+    - uses: actions/setup-python@v2
+    - run: pip install requests
+    - run: python scripts/roll_webrtc.py --base_branch master --revision $GITHUB_SHA
