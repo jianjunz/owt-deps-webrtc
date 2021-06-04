@@ -151,7 +151,7 @@ rtc_library("aec3") {
   ]
   absl_deps = [ "//third_party/abseil-cpp/absl/types:optional" ]
 
-  if (current_cpu == "x86" || current_cpu == "x64") {
+  if ((current_cpu == "x86" || current_cpu == "x64") && !is_wasm) {
     deps += [ ":aec3_avx2" ]
   }
 }

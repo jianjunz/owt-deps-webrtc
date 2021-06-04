@@ -25,8 +25,11 @@ rtc_library("fft_size_128") {
       "fft_size_128/ooura_fft_sse2.cc",
       "fft_size_128/ooura_fft_tables_neon_sse2.h",
     ]
-    if (is_posix || is_fuchsia) {
+    if (is_posix || is_fuchsia || is_wasm) {
       cflags += [ "-msse2" ]
+    }
+    if (is_wasm) {
+      cflags += [ "-msimd128" ]
     }
   }
 

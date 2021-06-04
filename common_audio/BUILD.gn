@@ -64,7 +64,7 @@ rtc_library("common_audio") {
     deps += [ ":common_audio_neon" ]
   }
 
-  if (current_cpu == "x86" || current_cpu == "x64") {
+  if ((current_cpu == "x86" || current_cpu == "x64") && current_os != "wasm") {
     deps += [ ":common_audio_sse2" ]
     deps += [ ":common_audio_avx2" ]
   }
@@ -232,7 +232,7 @@ rtc_library("fir_filter_factory") {
     "../rtc_base/system:arch",
     "../system_wrappers",
   ]
-  if (current_cpu == "x86" || current_cpu == "x64") {
+  if ((current_cpu == "x86" || current_cpu == "x64") && current_os != "wasm") {
     deps += [ ":common_audio_sse2" ]
     deps += [ ":common_audio_avx2" ]
   }
